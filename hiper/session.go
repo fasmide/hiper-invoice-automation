@@ -43,7 +43,7 @@ type Session struct {
 func (s *Session) Invoices() (Invoices, error) {
 	resp, err := s.Get("https://www.hiper.dk/mit-hiper/regninger-dynamisk")
 	if err != nil {
-		return nil, fmt.Errorf("unable to get invoices: %s")
+		return nil, fmt.Errorf("unable to get invoices: %s", err)
 	}
 	defer resp.Body.Close()
 
