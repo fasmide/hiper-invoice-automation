@@ -55,7 +55,7 @@ func main() {
 		m := gomail.NewMessage()
 		m.SetHeader("From", os.Getenv("HIPER_EMAIL_FROM"))
 		m.SetHeader("To", os.Getenv("HIPER_EMAIL_TO"))
-		m.SetHeader("Subject", "Mide har lagt ud for internet")
+		m.SetHeader("Subject", fmt.Sprintf("Regning %d fra hiper på %s", invoice.ID, invoice.Amount))
 		m.SetBody("text/plain", fmt.Sprintf("Hello Mads\n\nDet er tid til at flytte %s til mides konto: %s, vedhæftet er faktura\n\nvh Mide", invoice.Amount, os.Getenv("HIPER_MIDES_ACCOUNTNO")))
 		m.Attach(fmt.Sprintf("%d.pdf", invoice.ID), gomail.SetCopyFunc(func(w io.Writer) error {
 			// attach the invoice - downloaded directly from hiper
