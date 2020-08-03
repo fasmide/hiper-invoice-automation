@@ -23,7 +23,7 @@ func Login(username, password string) (*Session, error) {
 	values.Add("email", username)
 	values.Add("password", password)
 
-	resp, err := s.PostForm("https://www.hiper.dk/mit-hiper/login/registrer-dynamisk", values)
+	resp, err := s.PostForm("https://www.hiper.dk/mit-hiper/login/gem", values)
 	if err != nil {
 		return nil, fmt.Errorf("unable to post login: %w", err)
 	}
@@ -41,7 +41,7 @@ type Session struct {
 }
 
 func (s *Session) Invoices() (Invoices, error) {
-	resp, err := s.Get("https://www.hiper.dk/mit-hiper/regninger-dynamisk")
+	resp, err := s.Get("https://www.hiper.dk/mit-hiper/regninger")
 	if err != nil {
 		return nil, fmt.Errorf("unable to get invoices: %s", err)
 	}
