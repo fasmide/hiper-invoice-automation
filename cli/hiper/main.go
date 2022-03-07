@@ -39,6 +39,9 @@ func main() {
 	log.Print("Logged in!")
 
 	invoices, err := session.Invoices()
+	if err != nil {
+		log.Fatalf("unable to fetch invoices: %s", err)
+	}
 	log.Printf("Found invoices: %s", invoices.String())
 
 	// we should now email invoices that are present in invoices, but not in sentIDs - and then
